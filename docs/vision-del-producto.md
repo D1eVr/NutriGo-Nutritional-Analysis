@@ -9,7 +9,9 @@
 ---
 
 > **Autor:** Diego Valdovinos Rodríguez
+
 > **Fecha de la última versión:** 20/08/2026
+
 > **Repositorio**: https://github.com/D1eVr/NutriGo-Nutritional-Analysis.git
 
 ---
@@ -54,20 +56,23 @@
 
 ### Dentro del alcance
 
--
--
--
--
+- Registra el peso en ayunas, las horas de sueño, el agua consumida y la alimentación.
+- Muestra el progreso del usuario mediante su peso, IMC, porcentaje de grasa y porcentaje de músculo.
+- Recibe datos de dispositivos compatibles, como relojes, bandas o básculas inteligentes.
+- Genera un plan alimenticio personalizado según los datos, objetivos, preferencias y restricciones del usuario.
+- Ajusta el plan alimenticio semanal según los resultados registrados.
 
 ### Explícitamente fuera del alcance
 
--
--
--
+- No realiza diagnósticos médicos.
+- No procesa pagos ni cobros dentro de la aplicación.
+- No desarrolla dispositivos propios para medir los datos del usuario.
 
-**Por qué queda fuera:**
+> **Por qué queda fuera:** El desarrollo de dispositivos propios queda fuera porque requiere conocimientos, recursos y tiempo adicionales que no son necesarios para desarrollar la función principal de NutriGo! durante el semestre.
 
-*Instrucción: para al menos una de las exclusiones, explica la razón. Puede ser tiempo, complejidad, o que no aporta al problema central.*
+---
+
+## 4. Tipo de sistema y restricciones
 
 ---
 
@@ -75,27 +80,27 @@
 
 *Instrucción: identifica de qué tipo es tu sistema y qué te obliga a garantizar ese tipo. Un sistema de información y un sistema crítico no se diseñan igual.*
 
-**Tipo de sistema:**
+> **Tipo de sistema:** De información
 
-*(De información · Embebido · Crítico · Web y SaaS · De datos y análisis)*
-
-**Por qué es de ese tipo:**
+> **Por qué es de ese tipo:** NutriGo! registra, consulta y utiliza información de los usuarios para mostrar su progreso y generar su plan alimenticio. También puede recibir información proveniente de dispositivos compatibles.
 
 **Atributos de calidad que impone:**
 
 | Atributo | Por qué importa en mi caso | Qué pasa si no se cumple |
 |---|---|---|
-| | | |
-| | | |
-| | | |
+| Usabilidad | El usuario debe poder registrar sus datos diarios y consultar su información de forma rápida y sencilla. | El usuario puede dejar de usar la aplicación por ser complicada. |
+| Seguridad | Se manejan datos personales y de seguimiento del usuario. | Personas no autorizadas podrían acceder a información privada. |
+| Integridad de los datos | Los registros deben mantenerse correctos para que el seguimiento y los cambios del plan sean confiables. | El sistema podría mostrar un progreso incorrecto o generar un plan con información equivocada. |
 
 **Reglas de negocio que ya identifiqué:**
 
 *Instrucción: reglas que no son obvias desde fuera y que alguien que conoce el dominio tendría que explicarte. Si no encuentras ninguna, tu caso puede ser demasiado simple.*
 
-1.
-2.
-3.
+> **1.** El plan alimenticio se genera tomando en cuenta los datos básicos, objetivos, preferencias y restricciones alimenticias del usuario.
+
+> **2.** Cada semana el sistema analiza los registros de la semana anterior para generar el siguiente plan alimenticio.
+
+> **3.** Los datos diarios se conservan durante 30 días y después se reemplazan por un resumen mensual que el usuario puede descargar.
 
 ---
 
