@@ -3,8 +3,6 @@
 > **Plantilla del curso · Ingeniería de Software I · SIS3407**
 > Este documento es el primer entregable del semestre y la base de todo lo que viene después.
 > Se entrega completo en la **semana 4** y se presenta ante el grupo.
->
-> **Cómo usarla:** copia este archivo a tu repositorio como `docs/vision-del-producto.md`, borra las instrucciones en gris de cada apartado y escribe tu contenido en su lugar. Conserva los títulos.
 
 ---
 
@@ -18,17 +16,13 @@
 
 ## 1. Descripción del sistema
 
-*Instrucción: nombre del sistema y qué hace, en un párrafo que cualquier persona entienda sin ser del área. Si necesitas usar una palabra técnica para explicarlo, todavía no está listo.*
-
 > **Nombre del sistema:** NutriGo!
 
-> **Descripción:** Una aplicación que permite a las personas llevar un seguimiento diario de su alimentación y de sus cambios físicos, consultar su progreso y recibir un plan alimenticio personalizado que se adapta a sus resultados.
+> **Descripción:** Una aplicación que permite a las personas llevar un seguimiento diario de su alimentación y de sus cambios físicos, consultar su progreso y recibir un plan alimenticio personalizado que se adapta a sus resultados. También permite utilizar información proveniente de dispositivos existentes, como relojes, bandas de actividad y básculas inteligentes, para complementar el seguimiento del usuario.
 
 ---
 
 ## 2. Problema y usuarios
-
-*Instrucción: qué problema resuelve, a quién le sirve y, muy importante, qué hace esa gente hoy para arreglárselas sin el sistema. Esa última parte es la que revela el problema real.*
 
 > **El problema:** Hay personas que quieren regular su alimentación y llevar un seguimiento de sus cambios físicos, pero por sus actividades diarias les cuesta mantener un control constante de sus datos, alimentación y progreso.
 
@@ -38,47 +32,43 @@
 
 | Tipo de usuario | Qué necesita del sistema | Qué le preocupa |
 |---|---|---|
-| Paciente/Usuario | Registrar sus datos y consultar su plan y progreso. | Que sea rápido y fácil de usar. |
-| Nutriologo | Revisar el progreso y atender dudas o solicitudes de sus pacientes. | Contar con información suficiente y confiable. |
-| Administrador | Gestionar usuarios y mantener el sistema. | La seguridad y el acceso correcto a la información. |
+| Paciente/Usuario | Registrar sus datos, consultar su plan, revisar su progreso y comunicarse con un nutriólogo. | Que sea rápido, sencillo y que sus datos sean confiables. |
+| Nutriólogo | Consultar el progreso de sus pacientes, revisar sus registros y atender solicitudes dentro de sus horarios establecidos. | Contar con información suficiente y confiable para dar seguimiento a sus pacientes. |
+| Administrador | Gestionar usuarios y mantener el funcionamiento del sistema. | La seguridad y el acceso correcto a la información. |
 
-*Instrucción: necesitas al menos dos tipos de usuario con necesidades distintas. Si los dos quieren exactamente lo mismo, probablemente sean el mismo usuario.*
-
-> **Un conflicto entre usuarios:** El paciente puede solicitar una cita en cualquier momento, mientras que el nutriólogo debe atender las solicitudes de acuerdo con su disponibilidad y horario de trabajo.
-
-*Instrucción: describe algo que un usuario quiera y que a otro le estorbe. Ahí está tu primera decisión de diseño real.*
+> **Un conflicto entre usuarios:** El paciente puede solicitar comunicarse con un nutriólogo en cualquier momento, pero este solo puede atenderlo durante sus horarios establecidos, lo que puede generar una espera para el paciente.
 
 ---
 
 ## 3. Alcance
 
-*Instrucción: lo que escribes en "fuera del alcance" es lo que después evita que el proyecto crezca sin control. Sé específico: "reportes" no dice nada, "reportes de ventas mensuales exportables a PDF" sí.*
-
 ### Dentro del alcance
 
-- Registra el peso en ayunas, las horas de sueño, el agua consumida y la alimentación.
-- Muestra el progreso del usuario mediante su peso, IMC, porcentaje de grasa y porcentaje de músculo.
-- Recibe datos de dispositivos compatibles, como relojes, bandas o básculas inteligentes.
-- Genera un plan alimenticio personalizado según los datos, objetivos, preferencias y restricciones del usuario.
-- Ajusta el plan alimenticio semanal según los resultados registrados.
+> - Registra el peso en ayunas, las horas de sueño, el agua consumida, la alimentación y la actividad física diariamente, ya sea de forma automática o manual.
+> - Muestra el progreso del usuario mediante su peso, IMC, porcentaje de grasa y porcentaje de músculo.
+> - Permite registrar preferencias, alergias y alimentos que no le gustan al usuario para hacer el plan de alimentación lo más personalizado posible.
+> - Proporciona al usuario los horarios disponibles del nutriólogo para atender sus dudas o solicitar una cita remota.
+> - Se conecta con dispositivos existentes compatibles, como relojes inteligentes, bandas de actividad y básculas inteligentes, para recibir datos del usuario.
+> - Genera un plan alimenticio personalizado según los datos, objetivos, preferencias y restricciones del usuario.
+> - Ajusta el plan alimenticio semanal según los resultados registrados.
+> - Permite al nutriólogo consultar el progreso de sus pacientes y atender sus solicitudes dentro de los horarios establecidos.
+> - Permite al usuario descargar en PDF sus avances y planes de alimentación de forma semanal o mensual.
 
 ### Explícitamente fuera del alcance
 
-- No realiza diagnósticos médicos.
-- No procesa pagos ni cobros dentro de la aplicación.
-- No desarrolla dispositivos propios para medir los datos del usuario.
+> - No realiza diagnósticos médicos.
+> - No procesa pagos ni cobros dentro de la aplicación durante el desarrollo del semestre.
+> - No diseña ni fabrica dispositivos propios para medir los datos del usuario.
 
-> **Por qué queda fuera:** El desarrollo de dispositivos propios queda fuera porque requiere conocimientos, recursos y tiempo adicionales que no son necesarios para desarrollar la función principal de NutriGo! durante el semestre.
+> **Por qué queda fuera:** El diseño y fabricación de dispositivos propios queda fuera porque requiere conocimientos, recursos y tiempo adicionales que no serían suficientes durante el periodo correspondiente a la materia. NutriGo! se enfocará en utilizar conexiones con dispositivos existentes y compatibles para obtener los datos necesarios.
 
 ---
 
 ## 4. Tipo de sistema y restricciones
 
-*Instrucción: identifica de qué tipo es tu sistema y qué te obliga a garantizar ese tipo. Un sistema de información y un sistema crítico no se diseñan igual.*
+> **Tipo de sistema:** De información.
 
-> **Tipo de sistema:** De información
-
-> **Por qué es de ese tipo:** NutriGo! registra, consulta y utiliza información de los usuarios para mostrar su progreso y generar su plan alimenticio. También puede recibir información proveniente de dispositivos compatibles.
+> **Por qué es de ese tipo:** NutriGo! registra, consulta y utiliza información de los usuarios para mostrar su progreso, generar su plan alimenticio y facilitar el seguimiento con un nutriólogo. También puede recibir información proveniente de dispositivos compatibles.
 
 **Atributos de calidad que impone:**
 
@@ -90,8 +80,6 @@
 
 **Reglas de negocio que ya identifiqué:**
 
-*Instrucción: reglas que no son obvias desde fuera y que alguien que conoce el dominio tendría que explicarte. Si no encuentras ninguna, tu caso puede ser demasiado simple.*
-
 > **1.** El plan alimenticio se genera tomando en cuenta los datos básicos, objetivos, preferencias y restricciones alimenticias del usuario.
 
 > **2.** Cada semana el sistema analiza los registros de la semana anterior para generar el siguiente plan alimenticio.
@@ -102,37 +90,20 @@
 
 ## 5. Ciclo de vida elegido
 
-*Instrucción: este apartado se trabaja en la semana 3, después de ver los modelos de desarrollo. La justificación pesa más que la elección: no hay un modelo correcto, hay uno defendible para tu caso.*
+> **Modelo elegido:** Ágil.
 
-**Modelo elegido:**
+> **Por qué le conviene a este proyecto:** NutriGo! puede evolucionar conforme se conozcan mejor las necesidades de los usuarios y se prueben las funciones de la aplicación. El sistema puede comenzar con las funciones principales de registro, seguimiento y generación de planes, y posteriormente incorporar nuevas funciones de acuerdo con los resultados obtenidos y la retroalimentación de los usuarios.
 
-**Por qué le conviene a este proyecto:**
+> El modelo ágil permite desarrollar el sistema en ciclos cortos, validar cada parte antes de continuar y realizar cambios sin tener que replantear todo el proyecto. Esto resulta conveniente para NutriGo! porque algunas funcionalidades pueden evolucionar durante su desarrollo, especialmente las relacionadas con la conexión a dispositivos existentes y la comunicación entre usuarios y nutriólogos.
 
-*Instrucción: argumenta con las características reales de tu caso. Estabilidad de los requisitos, disponibilidad del cliente, nivel de riesgo, tamaño del equipo, frecuencia de entregas esperada.*
+> Además, permite mantener controlado el alcance principal durante el semestre y dejar para etapas posteriores funcionalidades de mayor complejidad. Entre estas se encuentran el desarrollo de dispositivos propios para obtener datos y la incorporación de una pasarela de pagos para ofrecer servicios bajo una metodología SaaS.
 
 ### Alternativas descartadas
 
-**Alternativa 1:**
+> **Alternativa 1:** Cascada.
 
-*Por qué la descarté:*
+> **Por qué la descarté:** El modelo en cascada supone que los requisitos pueden definirse con suficiente estabilidad desde el principio. En NutriGo! algunas funciones pueden modificarse conforme se pruebe el sistema y se reciba retroalimentación de los usuarios, por lo que realizar cambios al final de todas las etapas sería menos conveniente.
 
-**Alternativa 2:**
+> **Alternativa 2:** Modelo V.
 
-*Por qué la descarté:*
-
----
-
-## Antes de entregar
-
-Reviso que el documento cumpla lo siguiente:
-
-- [ ] La descripción del apartado 1 se entiende sin ser del área
-- [ ] Hay al menos dos tipos de usuario con necesidades distintas
-- [ ] Identifiqué un conflicto real entre usuarios
-- [ ] El alcance dice qué queda fuera, no solo qué queda dentro
-- [ ] Las exclusiones son específicas, no genéricas
-- [ ] Identifiqué el tipo de sistema y al menos dos atributos de calidad
-- [ ] Anoté al menos tres reglas de negocio no obvias
-- [ ] Justifiqué el ciclo de vida contra dos alternativas descartadas
-- [ ] El documento está en mi repositorio y se puede leer desde el navegador
-- [ ] Borré todas las instrucciones en cursiva de la plantilla
+> **Por qué la descarté:** El Modelo V sería útil si NutriGo! tuviera requisitos completamente estables y necesitara una validación formal de cada etapa. Sin embargo, el proyecto busca evolucionar sus funciones conforme se conozcan mejor las necesidades de los usuarios, por lo que un modelo que facilite iteraciones y cambios resulta más adecuado.
