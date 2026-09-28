@@ -128,10 +128,6 @@ Muchas gracias por tu tiempo y por compartir tu experiencia. La información ser
 - **Importancia de otros indicadores:** Se encontró que el peso por sí solo no cubre todas las necesidades para revisar los cambios físicos.
 - **Influencia del tiempo:** Se observó que las actividades cotidianas dificultan tanto mantener los registros como organizar la alimentación y acudir a consultas.
 
-### Aprendizaje general
-
-La entrevista permitió identificar que NutriGo! debe facilitar el seguimiento diario, aprovechar los dispositivos compatibles cuando sea posible y permitir que la persona continúe aunque tenga registros incompletos. También se deben considerar sus preferencias alimenticias, la consulta de su progreso, la privacidad de sus datos y el acceso a orientación nutricional.
-
 ---
 
 ## 3. Ficha de Dominio
