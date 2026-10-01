@@ -128,6 +128,14 @@ Muchas gracias por tu tiempo y por compartir tu experiencia. La información ser
 - **Importancia de otros indicadores:** Se encontró que el peso por sí solo no cubre todas las necesidades para revisar los cambios físicos.
 - **Influencia del tiempo:** Se observó que las actividades cotidianas dificultan tanto mantener los registros como organizar la alimentación y acudir a consultas.
 
+### Supuestos que no se verificaron en la entrevista
+
+- **Informes en PDF:** No se preguntó si la persona necesita descargar sus avances y planes de alimentación en PDF de forma semanal o mensual.
+- **Conservación de los registros:** No se preguntó si conservar los registros diarios durante 30 días y después sustituirlos por un resumen mensual es suficiente para revisar el progreso.
+- **Funciones del nutriólogo:** La entrevista se hizo desde el punto de vista del paciente, por lo que no se verificó cómo el nutriólogo consulta el progreso de sus pacientes ni cómo atiende las solicitudes dentro de sus horarios.
+
+Estos supuestos se mantienen en los requisitos, pero quedan pendientes de confirmar con el cliente.
+
 ---
 
 ## 3. Ficha de Dominio

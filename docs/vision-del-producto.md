@@ -18,7 +18,7 @@
 
 > **Nombre del sistema:** NutriGo!
 
-> **Descripción:** Una aplicación que permite a las personas llevar un seguimiento diario de su alimentación y de sus cambios físicos, consultar su progreso y recibir un plan alimenticio personalizado que se adapta a sus resultados. También permite utilizar información proveniente de dispositivos existentes, como relojes, bandas de actividad y básculas inteligentes, para complementar el seguimiento del usuario.
+> **Descripción:** Una aplicación móvil que permite a las personas llevar un seguimiento diario de su alimentación y de sus cambios físicos, consultar su progreso y recibir un plan alimenticio personalizado que se adapta a sus resultados. También permite utilizar información proveniente de dispositivos existentes, como relojes, bandas de actividad y básculas inteligentes, para complementar el seguimiento del usuario.
 
 ---
 
