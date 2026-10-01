@@ -479,8 +479,6 @@ El paciente puede solicitar comunicarse con un nutriólogo en cualquier momento,
 
 ## 5. Casos de uso
 
-El detalle de cada caso de uso (actor, objetivo, precondición, escenario principal, flujos alternos y postcondición) está en `docs/casos de uso/cu-01.md` a `cu-20.md`. Cada caso de uso se relaciona con los requisitos funcionales que realiza:
-
 | ID | Nombre | Requisitos que realiza |
 |---|---|---|
 | CU-01 | Crear una cuenta | RF-001 |
