@@ -67,7 +67,7 @@ Después de pasar cada sustantivo por las cuatro razones me quedaron diez clases
 | Autorizacion | Paciente, nutriólogo y fecha desde la que tiene acceso. | Se otorga, se retira y responde si un nutriólogo puede ver la información de un paciente. |
 | ResumenMensual | Mes, resumen de los indicadores y planes de ese mes. | Se genera con los registros que pasan de 30 días y se descarga en PDF. |
 
-**Casos para comentar en clase**
+**Casos**
 
 - **Alimento** se quedó con el "qué hace" en blanco. El sistema sí necesita guardar cada alimento por separado, con su tiempo de comida, porque aparece en el registro, en el plan y en el informe, pero no se me ocurre ninguna regla propia. Puede que sea una clase de puros datos o que en realidad sea un atributo de RegistroDiario y de PlanAlimenticio.
 - **PerfilAlimenticio** casi también sale en blanco. Lo dejé como clase porque el sistema lo guarda, el paciente lo modifica por su cuenta y el plan lo consulta cada semana, pero la regla importante, que el plan no incluya alergias ni alimentos que no le gustan, vive en PlanAlimenticio.
