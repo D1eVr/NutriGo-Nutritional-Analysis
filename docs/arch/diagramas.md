@@ -217,6 +217,8 @@ sequenceDiagram
 
 ## 6 · Modelo de dominio
 
+> **Reemplazado por [diagrama-de-clases.md](diagrama-de-clases.md).** Este fue el primer modelo de dominio de la Unidad 3. En la Unidad 4 las clases se volvieron a sacar de los requisitos con la técnica de los sustantivos (`docs/clases-candidatas.md`), y cambiaron tres cosas: Usuario con herencia pasó a ser Cuenta con su rol más una clase Paciente, la autorización dejó de ser un atributo de la cita y es una clase propia, y la estatura va en centímetros. Se conserva aquí solo como historial; el diagrama vigente es el del archivo nuevo.
+
 Clases, atributos, métodos, visibilidad y multiplicidad: el signo menos es privado y el más es público. Paciente, Nutriólogo y Administrador heredan de Usuario porque comparten el inicio y el cierre de sesión, pero cada uno tiene funciones propias de su rol. Hay dos requisitos que se volvieron métodos: admite(alimento) en el perfil alimenticio es la regla de no incluir alergias, restricciones ni alimentos que no le gustan al paciente, y calcularIMC(pesoKg) vive en Paciente porque es quien tiene la estatura. La autorización para que el nutriólogo vea el progreso es un atributo de la cita, porque el paciente la da al solicitarla.
 
 ```mermaid
