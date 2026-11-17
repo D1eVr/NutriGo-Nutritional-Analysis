@@ -4,7 +4,7 @@
 
 ## Solicitud que se analiza
 
-[`sc-001-recordatorio-para-registrar-el-dia.md`](sc-001-recordatorio-para-registrar-el-dia.md), pedida por <Jimena Morales>, dupla de revisión, el 12/11/2026.
+[`sc-001-recordatorio-para-registrar-el-dia.md`](sc-001-recordatorio-para-registrar-el-dia.md), pedida por Jimena Morales, dupla de revisión, el 12/11/2026.
 
 ## Traducción a términos del sistema
 
@@ -19,7 +19,7 @@ Traducido a NutriGo:
   - Gana una operación para configurarlos.
   - Para saber si el día está completo usa `estaCompleto()`, que RegistroDiario ya tiene.
 - **El contenedor Tareas programadas tiene un trabajo nuevo:** revisar qué pacientes tienen un recordatorio a esa hora y no han completado su día.
-- **El aviso sale por el mismo canal que ya pide el RF-033** (notificaciones al teléfono cuando el nutriólogo responde una cita). El componente Notificador, que hoy solo envía correos, necesita una forma de enviar notificaciones al teléfono.
+- **El aviso sale por el mismo canal que ya pide el RF-033** (notificaciones al teléfono cuando el nutriólogo responde una cita). El componente Notificador ya tiene en el diseño la salida al teléfono que pide el RF-033, pero todavía no está construida.
 
 ## Impacto directo
 
@@ -37,13 +37,14 @@ Traducido a NutriGo:
 
 | Artefacto | Unidad | Por qué se ve afectado |
 |---|---|---|
-| Registro de decisión ADR-xx | 3 | **Sin impacto.** El repo todavía no tiene registros de decisión escritos. Cuando se escriba el de las Tareas programadas, debe contar este trabajo junto con los tres que ya hace. |
-| Diagrama de contexto C4, nivel 1 (#1) | 3 | Aparece un sistema externo nuevo, el servicio de notificaciones del teléfono, al que NutriGo le envía avisos. Por el RF-033 ya debería estar ahí, y este cambio hace evidente que falta. |
-| Diagrama de contenedores C4, nivel 2 (#2) | 3 | Tareas programadas gana un cuarto trabajo: revisar los recordatorios, además de descargar mediciones, generar el plan de los lunes y armar el resumen mensual. También gana una flecha hacia el servicio de notificaciones. |
-| Diagrama de componentes C4, nivel 3 (#3) | 3 | El Notificador hoy solo tiene la flecha `enviarEnlace` hacia el correo. Gana una segunda forma de envío, al teléfono, que sirve para el RF-034 y para el RF-033. |
-| Máquina de estados del registro diario (#7) | 4 | **Sin impacto.** El recordatorio no cambia el estado del día: si el paciente no registra, el día sigue en SinRegistro, que es la regla del RNF-CON-001. |
-| Flujo de registrar el seguimiento diario (#4) | 4 | **Sin impacto.** El recordatorio ocurre antes de que el paciente abra el registro, y el flujo de registrar no cambia. |
-| Secuencia del registro del día con datos del dispositivo (#5) | 4 | **Sin impacto.** Ese flujo es el mismo con o sin recordatorio. |
+| Registro de decisión [ADR-003](../arch/adr-003-tareas-programadas.md), tareas programadas en un proceso aparte | 3 | Las tareas programadas ganan un cuarto trabajo, revisar los recordatorios. La decisión no cambia, pero hay que agregar el trabajo a su contexto. Una consecuencia negativa también pesa más: si el proceso se detiene sin avisar, ahora tampoco llegan los recordatorios. |
+| Diagrama de contexto C4, nivel 1 (#1) | 3 | **Sin impacto.** El servicio de notificaciones del teléfono ya aparece desde la revisión de consistencia del 17/11/2026, porque el RF-033 lo necesitaba. Este cambio lo usa, pero no lo agrega. |
+| Diagrama de contenedores C4, nivel 2 (#2) | 3 | Tareas programadas gana un cuarto trabajo: revisar los recordatorios, además de descargar mediciones, generar el plan de los lunes y armar el resumen mensual. Gana una flecha hacia el servicio de notificaciones, que hoy solo recibe avisos de la API. |
+| Diagrama de componentes C4, nivel 3 (#3) | 3 | **Sin impacto.** El Notificador ya envía avisos al teléfono por el RF-033. El recordatorio es un aviso más por el mismo camino. |
+| Diagramas de paquetes y de componentes UML (`paquetes-y-componentes.md`) | 4 | **Sin impacto.** Los atributos nuevos van en Paciente, dentro de Cuentas, y el aviso usa `notificar(paciente, mensaje)` de la interfaz INotificador, que ya existe. No aparece ninguna dependencia nueva entre paquetes. |
+| Máquina de estados del registro diario (`estados-y-actividad.md`, sección 1) | 4 | **Sin impacto.** El recordatorio no cambia el estado del día: si el paciente no registra, el día sigue en SinRegistro, que es la regla del RNF-CON-001. |
+| Diagrama de actividad de registrar el seguimiento diario (`estados-y-actividad.md`, sección 4) | 4 | **Sin impacto.** El recordatorio ocurre antes de que el paciente abra el registro, y el flujo de registrar no cambia. |
+| Diagrama de secuencia del registro del día (`diagrama-de-secuencia.md`) | 4 | **Sin impacto.** Ese flujo es el mismo con o sin recordatorio. |
 | Diagrama de objetos (`diagrama-de-clases.md`) | 4 | El objeto `ana : Paciente` debe mostrar los dos atributos nuevos, por ejemplo `horaRecordatorio = "21:00"` y `recordatorioActivo = true`, para que el caso siga representando a la clase completa. |
 | Clases candidatas (`clases-candidatas.md`) | 4 | El sustantivo nuevo "recordatorio" se descarta como atributo de Paciente: guarda una hora y si está activo, y no tiene comportamiento propio. Hay que anotarlo en la tabla "Es atributo". |
 | RNF-SEG-001, acceso solo con sesión iniciada | 2 | **Sigue siendo cierto con una condición.** El recordatorio aparece en la pantalla bloqueada sin sesión, así que no puede incluir ningún dato de salud. Hay que agregarlo a su métrica como caso de prueba. |

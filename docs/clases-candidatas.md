@@ -70,7 +70,7 @@ Después de pasar cada sustantivo por las cuatro razones me quedaron once clases
 | HorarioDeAtencion | Día de la semana, hora de inicio, hora de fin, duración de cada cita y qué espacios ya están ocupados. | Valida que la hora de fin sea posterior a la de inicio, se divide en los espacios que ven los pacientes, dice si un espacio sigue libre, lo aparta y lo libera cuando su cita se cancela o se rechaza. |
 | Cita | Fecha, hora, motivo, estado, paciente y nutriólogo. | Se solicita, se acepta, se rechaza o se cancela, y anuncia cada cambio de estado para que el horario libere el espacio y el paciente reciba la respuesta. |
 | Autorizacion | Paciente, nutriólogo y fecha desde la que tiene acceso. | Se otorga cuando el paciente comparte su progreso al pedir una cita, se retira sin afectar las citas y responde si un nutriólogo puede ver la información de un paciente. |
-| ResumenMensual | Mes, resumen de los indicadores y planes de ese mes. | Se genera con los registros que pasan de 30 días y se descarga en PDF. |
+| ResumenMensual | Mes y resumen de los indicadores de ese mes. | Se genera con los registros que pasan de 30 días. Su PDF mensual lo arma la app junto con los planes de ese mes (revisado en la Unidad 4, ver `docs/arch/consistencia.md`). |
 
 **Casos**
 

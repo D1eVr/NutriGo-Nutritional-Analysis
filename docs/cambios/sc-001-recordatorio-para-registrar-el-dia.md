@@ -8,7 +8,7 @@ Propuesta · 12/11/2026
 
 ## Quién la pide
 
-<Jimena Morales>, como dupla de revisión.
+Jimena Morales, como dupla de revisión.
 
 ## Qué se pide
 
