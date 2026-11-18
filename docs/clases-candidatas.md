@@ -1,8 +1,12 @@
 # De los requisitos a las clases
 
-**Sistema:** NutriGo!
-**Autor:** Diego Valdovinos Rodríguez
-**Fuente:** Especificación de requisitos, versión 1.1
+| Campo | Valor |
+|---|---|
+| **Sistema** | NutriGo!  |
+| **Autor** | Diego Valdovinos Rodríguez |
+| **Versión** | 1.0 |
+| **Fecha** | 05/11/2026 |
+| **Fuentes** | `Especificación de requisitos`, `versión 1.1` |
 
 ## 1. Sustantivos subrayados
 
@@ -52,25 +56,28 @@ En los criterios de aceptación aparecen además estos sustantivos que no salen 
 
 ## 2. Clases candidatas
 
-Después de pasar cada sustantivo por las cuatro razones me quedaron diez clases. Para cada una anoté en una línea qué sabe y qué hace.
+Después de pasar cada sustantivo por las cuatro razones me quedaron once clases. Para cada una anoté en una línea qué sabe y qué hace.
 
 | Clase | Qué sabe | Qué hace |
 |---|---|---|
-| Cuenta | Nombre, correo, contraseña, rol, estado (activa o desactivada), fecha de nacimiento, sexo y estatura. | Inicia y cierra sesión, rechaza el acceso con datos incorrectos o si está desactivada, recupera la contraseña, actualiza sus datos personales y se desactiva. |
-| RegistroDiario | Fecha, peso en ayunas, horas de sueño, agua, actividad física, porcentaje de grasa y de músculo, de dónde salió cada dato (dispositivo o captura manual) y su estado. | Se guarda completo o incompleto, valida que los valores estén dentro de rango, corrige un dato y calcula el IMC del día con la estatura de la cuenta. |
-| Alimento | Nombre del alimento y el tiempo de comida en que se registró (desayuno, colación, comida o cena). | En blanco. |
+| Cuenta | Nombre, correo, contraseña, rol (paciente, nutriólogo o administrador) y estado (activa o desactivada). | Inicia y cierra sesión, rechaza el acceso con datos incorrectos o si está desactivada, recupera la contraseña y se desactiva. |
+| Paciente | Fecha de nacimiento, sexo, estatura y la cuenta con la que entra. | Actualiza sus datos personales, valida que la estatura esté dentro de rango y calcula el IMC con el peso que le pasa el registro del día. |
+| RegistroDiario | Fecha, peso en ayunas, horas de sueño, agua, actividad física, porcentaje de grasa y de músculo, de dónde salió cada dato (dispositivo o captura manual) y su estado. | Se guarda completo o incompleto, valida que los valores estén dentro de rango, corrige un dato sin que la siguiente sincronización lo sobrescriba y le pide al paciente el IMC del día. |
+| Alimento | Nombre del alimento, el tiempo de comida (desayuno, colación, comida o cena) y la fecha en que se comió o para la que está planeado. | En blanco. |
 | Dispositivo | Tipo (reloj, banda, báscula u otro), los datos que mide, si está conectado y su última sincronización. | Se vincula a una cuenta, se sincroniza y entrega sus datos al registro del día, y se desvincula. |
-| PerfilAlimenticio | Objetivo, alergias, restricciones y alimentos que no le gustan al paciente. | Valida que tenga un objetivo antes de guardarse. Fuera de eso casi no hace nada, sus datos los usa el plan. |
-| PlanAlimenticio | Semana que cubre, comidas por día y por tiempo de comida, y si es el plan vigente. | Se genera con el perfil y los datos de la cuenta, se ajusta con los registros de la semana anterior y muestra las comidas de un día. |
-| HorarioDeAtencion | Día de la semana, hora de inicio, hora de fin y duración de cada cita. | Valida que la hora de fin sea posterior a la de inicio y se divide en los espacios que ven los pacientes. |
-| Cita | Fecha, hora, motivo, estado, paciente, nutriólogo y si el paciente comparte su progreso. | Se solicita, se acepta, se rechaza o se cancela, libera su espacio cuando se rechaza o se cancela y avisa al paciente de la respuesta. |
-| Autorizacion | Paciente, nutriólogo y fecha desde la que tiene acceso. | Se otorga, se retira y responde si un nutriólogo puede ver la información de un paciente. |
-| ResumenMensual | Mes, resumen de los indicadores y planes de ese mes. | Se genera con los registros que pasan de 30 días y se descarga en PDF. |
+| PerfilAlimenticio | Objetivo, alergias, restricciones y alimentos que no le gustan al paciente. | Valida que tenga un objetivo antes de guardarse y responde si admite un alimento revisando sus alergias, restricciones y los alimentos que no le gustan. |
+| PlanAlimenticio | Semana que cubre, comidas por día y por tiempo de comida, y si es el plan vigente. | Se genera con los datos del paciente usando solo alimentos que el perfil admite, se ajusta con los registros de la semana anterior y muestra las comidas de un día. |
+| HorarioDeAtencion | Día de la semana, hora de inicio, hora de fin, duración de cada cita y qué espacios ya están ocupados. | Valida que la hora de fin sea posterior a la de inicio, se divide en los espacios que ven los pacientes, dice si un espacio sigue libre, lo aparta y lo libera cuando su cita se cancela o se rechaza. |
+| Cita | Fecha, hora, motivo, estado, paciente y nutriólogo. | Se solicita, se acepta, se rechaza o se cancela, y anuncia cada cambio de estado para que el horario libere el espacio y el paciente reciba la respuesta. |
+| Autorizacion | Paciente, nutriólogo y fecha desde la que tiene acceso. | Se otorga cuando el paciente comparte su progreso al pedir una cita, se retira sin afectar las citas y responde si un nutriólogo puede ver la información de un paciente. |
+| ResumenMensual | Mes y resumen de los indicadores de ese mes. | Se genera con los registros que pasan de 30 días. Su PDF mensual lo arma la app junto con los planes de ese mes (revisado en la Unidad 4, ver `docs/arch/consistencia.md`). |
 
 **Casos**
 
-- **Alimento** se quedó con el "qué hace" en blanco. El sistema sí necesita guardar cada alimento por separado, con su tiempo de comida, porque aparece en el registro, en el plan y en el informe, pero no se me ocurre ninguna regla propia. Puede que sea una clase de puros datos o que en realidad sea un atributo de RegistroDiario y de PlanAlimenticio.
-- **PerfilAlimenticio** casi también sale en blanco. Lo dejé como clase porque el sistema lo guarda, el paciente lo modifica por su cuenta y el plan lo consulta cada semana, pero la regla importante, que el plan no incluya alergias ni alimentos que no le gustan, vive en PlanAlimenticio.
+- **Alimento** se quedó con el "qué hace" en blanco. El sistema sí necesita guardar cada alimento por separado, con su tiempo de comida, porque aparece en el registro, en el plan y en el informe. Me hice la pregunta de dónde viven las reglas que tocan sus datos, y la única es que el tiempo de comida sea desayuno, colación, comida o cena, que es una validación del propio dato. Ninguna otra clase decide por él, así que creo que es una clase de puros datos legítima, aunque también podría ser un atributo de RegistroDiario y de PlanAlimenticio.
+- **PerfilAlimenticio** primero me salió casi en blanco, porque había dejado en PlanAlimenticio la regla de no incluir alergias ni alimentos que no le gustan al paciente. Con la misma pregunta, la respuesta era que esa regla vivía en otro lado: el plan tenía que conocer las alergias, las restricciones y los gustos del perfil para decidir por él, y eso es acoplamiento. Como esos datos son del perfil, ahora el perfil responde si admite un alimento y el plan solo se lo pregunta. Esto ajusta lo que escribí en la Actividad 1, donde le había dado esa regla al plan.
+- **Paciente** en el primer borrador lo descarté como actor, junto con el nutriólogo y el administrador. La persona sí es el actor y está fuera del sistema, pero el sistema guarda varios pacientes, los distingue y recuerda cosas de cada uno, así que lo que guarda de ella es una clase. Además, si su estatura, sexo y fecha de nacimiento vivían en Cuenta, el nutriólogo y el administrador quedaban con datos que no tienen. Por eso Cuenta se quedó con el acceso y Paciente con sus datos personales.
+- **Cita y HorarioDeAtencion** quedaron como lo decidí en las actividades 1 y 2: el horario es el dueño de los espacios, así que es él quien dice si uno sigue libre y lo libera, y la cita solo anuncia que cambió de estado, que es el Observer de la Actividad 2.
 
 ## 3. Sustantivos descartados
 
@@ -78,56 +85,58 @@ Después de pasar cada sustantivo por las cuatro razones me quedaron diez clases
 
 | Sustantivo | De qué clase es atributo |
 |---|---|
-| nombre, correo electrónico, contraseña, fecha de nacimiento, sexo, estatura, centímetros, rol | Cuenta |
+| nombre, correo electrónico, contraseña, rol | Cuenta |
+| acceso (en RF-002 y RF-003) | Cuenta (es entrar a la aplicación con su correo y contraseña) |
 | sesión | Cuenta (si tiene o no la sesión iniciada) |
 | enlace | Cuenta (es el medio para crear la nueva contraseña) |
 | alta | Cuenta (es el momento en que se crea con el rol de nutriólogo) |
-| peso, peso en ayunas, horas de sueño, agua, consumo de agua, actividad física, porcentaje de grasa, porcentaje de músculo, IMC | RegistroDiario |
+| fecha de nacimiento, sexo, estatura, centímetros | Paciente |
+| peso, peso en ayunas, horas de sueño, agua, consumo de agua, actividad física, porcentaje de grasa, porcentaje de grasa corporal, porcentaje de músculo, IMC | RegistroDiario (el IMC del día lo calcula Paciente con su estatura) |
 | fecha, día, valor, corrección, captura, antigüedad | RegistroDiario |
 | estado | RegistroDiario, Cita y Cuenta, cada una con sus propios estados |
 | objetivo, alergias, restricciones, restricciones alimenticias | PerfilAlimenticio |
 | comida, desayuno, colación, cena, tiempo de comida | Alimento y PlanAlimenticio |
 | semana, día de la semana | PlanAlimenticio y HorarioDeAtencion |
 | hora de inicio, hora de fin, duración | HorarioDeAtencion |
-| espacio | Cita (es la fecha y la hora que ocupa la cita dentro de un horario) |
+| espacio | HorarioDeAtencion (cada horario se divide en espacios; la cita guarda la fecha y la hora del que ocupa) |
 | motivo, consulta | Cita |
 | última sincronización | Dispositivo |
 | mes, año, periodo | ResumenMensual, o el filtro con el que se consulta el progreso |
-| rango | RegistroDiario y Cuenta (son los límites con los que validan sus valores) |
+| rango | RegistroDiario y Paciente (son los límites con los que validan sus valores) |
 
 **Es sinónimo**
 
 | Sustantivo | Es sinónimo de |
 |---|---|
-| usuario | Cuenta |
+| usuario (en el alcance) | Paciente (es quien registra su día, tiene progreso y preferencias y descarga sus avances) |
+| usuario (en RF-002, RF-004, RF-005 y RF-029) | Cuenta (es cualquiera de los tres roles que inicia sesión, recupera su contraseña o es desactivado) |
+| nutriólogo, administrador | Cuenta (son valores de su rol; del nutriólogo el sistema guarda además sus horarios de atención) |
+| persona, pacientes | Paciente |
 | plan, plan semanal, plan alimenticio semanal, planes de alimentación | PlanAlimenticio |
 | preferencias, preferencias alimenticias | PerfilAlimenticio |
-| registro, registros diarios, dato registrado, medición | RegistroDiario |
+| registro, registros, registros diarios, dato registrado, medición | RegistroDiario |
 | historial | RegistroDiario (es el conjunto de registros de un paciente) |
-| solicitud, solicitud de cita | Cita (es una cita en estado pendiente) |
-| horario, horarios disponibles | HorarioDeAtencion |
-| acceso | Autorizacion |
-| reloj inteligente, banda de actividad, báscula inteligente | Dispositivo (son sus tipos) |
-| persona | paciente |
+| solicitud, solicitudes, solicitud de cita | Cita (es una cita en estado pendiente) |
+| horario, horarios, horarios disponibles | HorarioDeAtencion |
+| acceso (en RF-024) | Autorizacion (es el permiso del nutriólogo para ver la información del paciente) |
+| reloj inteligente, relojes inteligentes, banda de actividad, bandas de actividad, báscula inteligente, básculas inteligentes | Dispositivo (son sus tipos) |
 
 **Está fuera del sistema**
 
 | Sustantivo | Por qué |
 |---|---|
-| paciente, nutriólogo, administrador | Son los actores. Existen fuera de la aplicación, y lo que el sistema guarda de ellos está en Cuenta, PerfilAlimenticio y HorarioDeAtencion. |
 | teléfono | Es donde corre la aplicación y donde se guarda el PDF, pero el sistema no lo gestiona. |
-| notificación | La entrega el servicio de notificaciones del teléfono. Para el sistema es solo una operación de Cita que avisa al paciente. |
+| notificación | La entrega el servicio de notificaciones del teléfono. Para el sistema es solo la reacción a que la cita anunció un cambio de estado. |
 | correo (como servicio de envío) | El sistema solo manda el enlace, quien lo entrega es el servicio de correo. |
-| archivo PDF | Una vez descargado queda en el teléfono y el sistema ya no lo controla. |
+| informe, archivo PDF | Se arma en el momento con lo que ya está en RegistroDiario, PlanAlimenticio y ResumenMensual, y una vez descargado queda en el teléfono; el sistema no lo guarda ni lo controla. |
 
 **Es demasiado vago**
 
 | Sustantivo | Por qué |
 |---|---|
 | sistema, aplicación | Es NutriGo! completo, no una pieza de él. |
-| información, datos, datos personales | No dicen qué guardan. Lo que hay detrás ya está en Cuenta, RegistroDiario y PerfilAlimenticio. |
+| información, datos, datos personales | No dicen qué guardan. Lo que hay detrás ya está en Cuenta, Paciente, RegistroDiario y PerfilAlimenticio. |
 | progreso, avances, resultados, evolución, cambios físicos, indicadores | Se calculan con los registros diarios y el resumen mensual, no guardan nada propio. |
 | seguimiento, alimentación | Describen la actividad del paciente, no una cosa concreta que el sistema guarde. |
-| informe | Solo junta lo que ya está en RegistroDiario, PlanAlimenticio y ResumenMensual, y se genera cuando el paciente lo pide. |
 | forma, dudas, cambios | No nombran nada concreto del sistema. |
 | gráfica, pantalla, mensaje | Son de la interfaz, no del dominio. No tienen datos propios. |
